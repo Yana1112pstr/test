@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange rates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.css"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Курсы валют</h1>
+      <button type="button" id="buttonName">Сортировать по имени</button>
+      <button type="button" id="buttonCourse">Сортировать по курсу</button>
+      <table class="table">
+        <tr class="table_header">
+          <th>Код</th>
+          <th>ISO код</th>
+          <th>Кол-во ед.</th>
+          <th>Наименование</th>
+          <th>Курс (грн)</th>
+          <th>Измен.(грн)</th>
+          <th>Измен.(%)</th>
+        </tr>
+      </table>
+    </div>
+    <script src="js/index.js" type="module"></script>
+  </body>
+</html>
