@@ -333,15 +333,15 @@ for (let i = 0; i < countItems; i++) {
   createTab();
 }
 
-const headers = table.querySelectorAll("tr");
+const headers = table.querySelectorAll("th");
 [].forEach.call(headers, function (header, index) {
   header.addEventListener("click", function () {
     sortColumn(index);
   });
 });
+console.log(headers);
 
 const rows = tbody.querySelectorAll("tr");
-console.log(rows);
 
 const sortColumn = function (index) {
   const newRows = Array.from(rows);
