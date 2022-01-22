@@ -309,25 +309,8 @@ const items = [
 
 const countItems = items.length;
 
-const tableList = document.querySelector(".table");
-
-const buttonName = document.getElementById("buttonName");
-const sortByName = () => {
-  console.log("click sort name");
-  // items.sort((a, b) => a.name.localeCompare(b.name));
-  buttonName.removeEventListener("click", sortByName);
-};
-buttonName.addEventListener("click", sortByName);
-
-const buttonCourse = document.getElementById("buttonCourse");
-const sortByCourse = () => {
-  console.log("click sort course");
-  // items.sort(function (a, b) {
-  //   return a.course - b.course;
-  // });
-  buttonCourse.removeEventListener("click", sortByCourse);
-};
-buttonCourse.addEventListener("click", sortByCourse);
+const table = document.querySelector(".table");
+const tbody = document.getElementById("tbody");
 
 for (let i = 0; i < countItems; i++) {
   let code = items[i].code;
@@ -339,13 +322,48 @@ for (let i = 0; i < countItems; i++) {
   let percent = items[i].percent;
 
   function createTab() {
-    let body = `<td>${code}</td><td>${ISO}</td><td>${amount}</td><td>${name}</td><td>${course}</td><td>${UAH}</td><td>${percent}</td>`;
     if (UAH < 0) {
-      let tbody = `<tr class="table_tbody table_tbody-red" id=${code}>${body}</tr>`;
-      tableList.insertAdjacentHTML("beforeend", tbody);
+      let redBody = `<tr class="table_tbody table_tbody-red" id=${code}><td>${code}</td><td>${ISO}</td><td>${amount}</td><td>${name}</td><td>${course}</td><td>${UAH}</td><td>${percent}</td></tr>`;
+      tbody.insertAdjacentHTML("beforeend", redBody);
+    } else {
+      let greenBody = `<tr class="table_tbody table_tbody-green" id=${code}><td>${code}</td><td>${ISO}</td><td>${amount}</td><td>${name}</td><td>${course}</td><td>${UAH}</td><td>${percent}</td></tr>`;
+      tbody.insertAdjacentHTML("beforeend", greenBody);
     }
-    let tbody = `<tr class="table_tbody table_tbody-green" id=${code}>${body}</tr>`;
-    tableList.insertAdjacentHTML("beforeend", tbody);
   }
   createTab();
 }
+
+const headers = table.querySelectorAll("tr");
+[].forEach.call(headers, function (header, index) {
+  header.addEventListener("click", function () {
+    sortColumn(index);
+  });
+});
+
+const rows = tbody.querySelectorAll("tr");
+console.log(rows);
+
+const sortColumn = function (index) {
+  const newRows = Array.from(rows);
+  newRows.sort(function (rowA, rowB) {
+    const cellA = rowA.querySelectorAll("td")[index].innerHTML;
+    const cellB = rowB.querySelectorAll("td")[index].innerHTML;
+
+    switch (true) {
+      case cellA > cellB:
+        return 1;
+      case cellA < cellB:
+        return -1;
+      case cellA === cellB:
+        return 0;
+    }
+  });
+
+  [].forEach.call(rows, function (row) {
+    tbody.removeChild(row);
+  });
+
+  newRows.forEach(function (newRow) {
+    tbody.appendChild(newRow);
+  });
+};

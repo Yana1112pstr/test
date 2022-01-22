@@ -20,18 +20,19 @@
   <body>
     <div class="container">
       <h1 class="title">Курсы валют</h1>
-      <button type="button" id="buttonName">Сортировать по имени</button>
-      <button type="button" id="buttonCourse">Сортировать по курсу</button>
       <table class="table">
-        <tr class="table_header">
-          <th>Код</th>
-          <th>ISO код</th>
-          <th>Кол-во ед.</th>
-          <th>Наименование</th>
-          <th>Курс (грн)</th>
-          <th>Измен.(грн)</th>
-          <th>Измен.(%)</th>
-        </tr>
+        <thead>
+          <tr class="table_header">
+            <th>Код</th>
+            <th>ISO код</th>
+            <th>Кол-во ед.</th>
+            <th>Наименование</th>
+            <th>Курс (грн)</th>
+            <th>Измен.(грн)</th>
+            <th>Измен.(%)</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
       </table>
     </div>
     <script src="js/index.js" type="module"></script>
